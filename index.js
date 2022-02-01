@@ -9,11 +9,18 @@ import { createSpinner } from "nanospinner";
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
-const welcome = async () => {
-  const rainbowTitle = chalkAnimation.rainbow("Hello World");
+const user = "Pettersilie";
 
-  await sleep();
-  rainbowTitle.stop();
+const welcome = async () => {
+  //  const rainbowTitle = chalkAnimation.rainbow("Hello World");
+
+  //  await sleep();
+  //  rainbowTitle.stop();
+  const msg = `Welcome ${user}, Happy productivity`;
+
+  figlet(msg, (err, data) => {
+    console.log(gradient.pastel.multiline(data));
+  });
 };
 
 await welcome();
