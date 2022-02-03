@@ -16,7 +16,7 @@ const welcome = async () => {
 
   //  await sleep();
   //  rainbowTitle.stop();
-  const msg = `Welcome ${user}, Happy hacking`;
+  const msg = `Welcome ${user}, Happy turtle`;
 
   figlet(msg, (err, data) => {
     console.log(gradient.pastel.multiline(data));
@@ -40,19 +40,46 @@ const task = async () => {
   const options = await inquirer.prompt({
     name: "options",
     type: "list",
-    message: `What do you want to do ${user} \n`,
-    choices: ["turtle", "turtle", "turtle", "turtle"],
+    message: `What do you want to do ${user}? \n`,
+    choices: ["turtle", "many turtle", "big turtle"],
   });
 
-  return handleAnswer(options.choices == "turle");
+  return handleAnswer(options.options);
 };
 
-const handleAnswer = async (isCorrect) => {
+const handleAnswer = async (choice) => {
   const spinner = createSpinner("Processing...").start();
   await sleep();
-  spinner.success({
-    text: "Here are your turtles: \n 🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢",
-  });
+  switch (choice) {
+    case "turle":
+      spinner.success({
+        text: "Here is your turtle: 🐢",
+      });
+      break;
+    case "many turtle":
+      spinner.success({
+        text: "Here are your turtles: \n 🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢",
+      });
+      break;
+    case "big turtle":
+      spinner.success({
+        text: chalk.green(
+          [
+            "Here is your big turtle:",
+            "  _____    ____",
+            " /      \\ |  o | ",
+            "|        |/ ___| ",
+            "|_________/",
+            "|_|_| |_|_|",
+          ].join("\n")
+        ),
+      });
+      break;
+    default:
+      spinner.error({
+        text: "No turtle",
+      });
+  }
 };
 
 await welcome();
