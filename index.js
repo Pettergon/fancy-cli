@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-import chalk from "chalk";
-import inquirer from "inquirer";
-import gradient from "gradient-string";
-import chalkAnimation from "chalk-animation";
-import figlet from "figlet";
-import { createSpinner } from "nanospinner";
+import chalk from 'chalk';
+import inquirer from 'inquirer';
+import gradient from 'gradient-string';
+import chalkAnimation from 'chalk-animation';
+import figlet from 'figlet';
+import { createSpinner } from 'nanospinner';
 
-const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms = 2000) => new Promise(r => setTimeout(r, ms));
 
-let user = "User";
+let user = 'User';
 
 const welcome = async () => {
   //  const rainbowTitle = chalkAnimation.rainbow("Hello World");
@@ -25,12 +25,12 @@ const welcome = async () => {
 
 const askName = async () => {
   const answers = await inquirer.prompt({
-    name: "userName",
-    type: "input",
-    message: "What is your name?",
+    name: 'userName',
+    type: 'input',
+    message: 'What is your name?',
     default() {
-      return "User";
-    },
+      return 'User';
+    }
   });
 
   user = answers.userName;
@@ -38,53 +38,53 @@ const askName = async () => {
 
 const task = async () => {
   const options = await inquirer.prompt({
-    name: "options",
-    type: "list",
+    name: 'options',
+    type: 'list',
     message: `What do you want to do ${user}? \n`,
-    choices: ["turtle", "many turtle", "big turtle", "turtle banner"],
+    choices: ['turtle', 'many turtle', 'big turtle', 'turtle banner']
   });
 
   return handleAnswer(options.options);
 };
 
-const handleAnswer = async (choice) => {
-  const spinner = createSpinner("Processing...").start();
+const handleAnswer = async choice => {
+  const spinner = createSpinner('Processing...').start();
   await sleep();
   switch (choice) {
-    case "turle":
+    case 'turle':
       spinner.success({
-        text: "Here is your turtle: 🐢",
+        text: 'Here is your turtle: 🐢'
       });
       break;
-    case "many turtle":
+    case 'many turtle':
       spinner.success({
-        text: "Here are your turtles: \n 🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢",
+        text: 'Here are your turtles: \n 🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢🐢'
       });
       break;
-    case "big turtle":
+    case 'big turtle':
       spinner.success({
         text: chalk.green(
           [
-            "Here is your big turtle:",
-            "  _____    ____",
-            " /      \\ |  o | ",
-            "|        |/ ___| ",
-            "|_________/",
-            "|_|_| |_|_|",
-          ].join("\n")
-        ),
+            'Here is your big turtle:',
+            '  _____    ____',
+            ' /      \\ |  o | ',
+            '|        |/ ___| ',
+            '|_________/',
+            '|_|_| |_|_|'
+          ].join('\n')
+        )
       });
       break;
-    case "turtle banner":
+    case 'turtle banner':
       spinner.success({
-        text: figlet("turtle", (err, data) => {
-          console.log(gradient("lightgreen", "green").multiline(data));
-        }),
+        text: figlet('turtle', (err, data) => {
+          console.log(gradient('lightgreen', 'green').multiline(data));
+        })
       });
       break;
     default:
       spinner.error({
-        text: "No turtle",
+        text: 'No turtle'
       });
   }
 };

@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "editor.formatOnSave": true,
+  "trailingComma": "none",
+  "arrowParens": "avoid"
+}
