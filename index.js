@@ -41,7 +41,7 @@ const task = async () => {
     name: "options",
     type: "list",
     message: `What do you want to do ${user}? \n`,
-    choices: ["turtle", "many turtle", "big turtle"],
+    choices: ["turtle", "many turtle", "big turtle", "turtle banner"],
   });
 
   return handleAnswer(options.options);
@@ -73,6 +73,13 @@ const handleAnswer = async (choice) => {
             "|_|_| |_|_|",
           ].join("\n")
         ),
+      });
+      break;
+    case "turtle banner":
+      spinner.success({
+        text: figlet("turtle", (err, data) => {
+          console.log(gradient("lightgreen", "green").multiline(data));
+        }),
       });
       break;
     default:
