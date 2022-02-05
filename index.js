@@ -12,10 +12,6 @@ const sleep = (ms = 2000) => new Promise(r => setTimeout(r, ms));
 let user = 'User';
 
 const welcome = async () => {
-  //  const rainbowTitle = chalkAnimation.rainbow("Hello World");
-
-  //  await sleep();
-  //  rainbowTitle.stop();
   const msg = `Welcome ${user}, Happy turtle`;
 
   figlet(msg, (err, data) => {
@@ -62,6 +58,7 @@ const handleAnswer = async choice => {
       });
       break;
     case 'big turtle':
+      // TODO: fix this
       spinner.success({
         text: chalk.green(
           [
@@ -89,7 +86,16 @@ const handleAnswer = async choice => {
   }
 };
 
+const endPromt = async () => {
+  const rainbowTitle = chalkAnimation.rainbow(
+    'Thank you for using turtle-cli.'
+  );
+  await sleep();
+  rainbowTitle.stop();
+};
+
 await welcome();
 await sleep(100);
 await askName();
 await task();
+await endPromt();
