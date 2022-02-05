@@ -72,7 +72,6 @@ const handleAnswer = async choice => {
       });
       break;
     case 'turtle banner':
-      // TODO: fix this
       spinner.success({
         text: 'Here is your turtle banner: '
       });
