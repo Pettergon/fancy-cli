@@ -58,7 +58,6 @@ const handleAnswer = async choice => {
       });
       break;
     case 'big turtle':
-      // TODO: fix this
       spinner.success({
         text: chalk.green(
           [
@@ -73,10 +72,12 @@ const handleAnswer = async choice => {
       });
       break;
     case 'turtle banner':
+      // TODO: fix this
       spinner.success({
-        text: figlet('turtle', (err, data) => {
-          console.log(gradient('lightgreen', 'green').multiline(data));
-        })
+        text: 'Here is your turtle banner: '
+      });
+      figlet('turtle', (err, data) => {
+        console.log(gradient('lightgreen', 'green').multiline(data));
       });
       break;
     default:
