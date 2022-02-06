@@ -37,7 +37,7 @@ const task = async () => {
     name: 'options',
     type: 'list',
     message: `What do you want to do ${user}? \n`,
-    choices: ['turtle', 'many turtle', 'big turtle', 'turtle banner']
+    choices: ['tiny turtle', 'many turtle', 'big turtle', 'turtle banner']
   });
 
   return handleTaskAnswer(options.options);
@@ -47,7 +47,7 @@ const handleTaskAnswer = async choice => {
   const spinner = createSpinner('Processing...').start();
   await sleep();
   switch (choice) {
-    case 'turle':
+    case 'tiny turtle':
       spinner.success({
         text: 'Here is your turtle: 🐢'
       });
