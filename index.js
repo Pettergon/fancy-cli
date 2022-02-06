@@ -40,10 +40,10 @@ const task = async () => {
     choices: ['turtle', 'many turtle', 'big turtle', 'turtle banner']
   });
 
-  return handleAnswer(options.options);
+  return handleTaskAnswer(options.options);
 };
 
-const handleAnswer = async choice => {
+const handleTaskAnswer = async choice => {
   const spinner = createSpinner('Processing...').start();
   await sleep();
   switch (choice) {
@@ -94,8 +94,32 @@ const endPromt = async () => {
   rainbowTitle.stop();
 };
 
+const quiz = async () => {
+  const quiz = await inquirer.prompt({
+    name: 'quiz',
+    type: 'list',
+    message: `What is your favourite turtle? \n`,
+    choices: ['water turtle', 'land turtle (tortoise)']
+  });
+
+  return handleQuizAnswer(quiz.quiz == 'water turtle');
+};
+
+const handleQuizAnswer = async isCorrect => {
+  const spinner = createSpinner('Processing...').start();
+  await sleep();
+  isCorrect
+    ? spinner.success({
+        text: 'That was the correct answer. Here have some turtles: \n 🐢🐢🐢🐢🐢🐢🐢 \n'
+      })
+    : spinner.error({
+        text: 'Wrong. Only water turtles are real turtles. \n  Here have a consolation turtle: 🐢 \n'
+      });
+};
+
 await welcome();
 await sleep(100);
 await askName();
 await task();
+await quiz();
 await endPromt();
