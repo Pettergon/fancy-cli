@@ -12,7 +12,7 @@ const sleep = (ms = 2000) => new Promise(r => setTimeout(r, ms));
 let user = 'User';
 
 const welcome = async () => {
-  const msg = `Welcome ${user}, Happy turtle`;
+  const msg = `Hello ${user}, Happy turtle`;
 
   figlet(msg, (err, data) => {
     console.log(gradient.pastel.multiline(data));
@@ -23,7 +23,7 @@ const askName = async () => {
   const answers = await inquirer.prompt({
     name: 'userName',
     type: 'input',
-    message: 'What is your name?',
+    message: 'Welcome, what is your name?',
     default() {
       return 'User';
     }
@@ -117,9 +117,9 @@ const handleQuizAnswer = async isCorrect => {
       });
 };
 
+await askName();
 await welcome();
 await sleep(100);
-await askName();
 await task();
 await quiz();
 await endPromt();
