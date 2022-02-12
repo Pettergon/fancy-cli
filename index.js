@@ -117,9 +117,13 @@ const handleQuizAnswer = async isCorrect => {
       });
 };
 
-await welcome();
-await showBanner();
-await sleep(100);
-await task();
-await quiz();
-await endPromt();
+const start = async () => {
+  await welcome();
+  await showBanner();
+  await sleep(100);
+  await task();
+  await quiz();
+  await endPromt();
+};
+
+await start();
