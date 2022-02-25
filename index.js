@@ -33,6 +33,8 @@ const showBanner = async () => {
 };
 
 const task = async () => {
+  // put a sleep here so the tasks are in the right order
+  await sleep(100);
   const options = await inquirer.prompt({
     name: 'options',
     type: 'list',
@@ -120,7 +122,6 @@ const handleQuizAnswer = async isCorrect => {
 const start = async () => {
   await welcome();
   await showBanner();
-  await sleep(100);
   await task();
   await quiz();
   await endPromt();
