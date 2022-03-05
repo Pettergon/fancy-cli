@@ -7,10 +7,13 @@ import chalkAnimation from 'chalk-animation';
 import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 
+// standart sleep function
 const sleep = (ms = 2000) => new Promise(r => setTimeout(r, ms));
 
+// initialize default to User
 let user = 'User';
 
+// greets user and asks for name
 const welcome = async () => {
   const answers = await inquirer.prompt({
     name: 'userName',
@@ -24,6 +27,7 @@ const welcome = async () => {
   user = answers.userName;
 };
 
+// Create big banner with username after asking for it
 const showBanner = async () => {
   const msg = `Hello ${user}, Happy turtle`;
 
@@ -32,6 +36,7 @@ const showBanner = async () => {
   });
 };
 
+// asks for task user wants to do
 const task = async () => {
   // put a sleep here so the tasks are in the right order
   await sleep(100);
@@ -45,6 +50,7 @@ const task = async () => {
   return handleTaskAnswer(options.options);
 };
 
+// gives the user an output based on task
 const handleTaskAnswer = async choice => {
   const spinner = createSpinner('Processing...').start();
   await sleep();
@@ -88,6 +94,7 @@ const handleTaskAnswer = async choice => {
   }
 };
 
+// goobye
 const endPromt = async () => {
   const rainbowTitle = chalkAnimation.rainbow(
     'Thank you for using turtle-cli.'
@@ -96,6 +103,7 @@ const endPromt = async () => {
   rainbowTitle.stop();
 };
 
+// asks a tricky question
 const quiz = async () => {
   const quiz = await inquirer.prompt({
     name: 'quiz',
@@ -107,6 +115,7 @@ const quiz = async () => {
   return handleQuizAnswer(quiz.quiz == 'water turtle');
 };
 
+// checks quiz answers and tells user if correct or not
 const handleQuizAnswer = async isCorrect => {
   const spinner = createSpinner('Processing...').start();
   await sleep();
